@@ -1,0 +1,1 @@
+mongoimport --jsonArray --db city_data --collection climates --file climates.json
