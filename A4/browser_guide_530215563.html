@@ -1,0 +1,295 @@
+<article class="guide">
+  <carousel class="deck container-fluid">
+    <!-- Slide One -->
+    <slide class="row-fluid">
+      <div class="col-sm-3">
+        <h3>Graph Building</h3>
+        <p class="lead">Load the data according to my graph sechma.</p>
+      </div>
+      <div class="col-sm-9">
+        <p>Use following queries to build the graph.</p>
+        <pre class="pre-scrollable code runnable">
+          // 5 Node Airport, Airline, Plane, Route, and Country
+          CREATE CONSTRAINT airportIdConstraint FOR (airport:Airport) REQUIRE airport.id IS UNIQUE;
+          CREATE CONSTRAINT airlineIdConstraint FOR (airline:Airline) REQUIRE airline.id IS UNIQUE;
+          //CREATE CONSTRAINT planeIATAConstraint FOR (plane:Plane) REQUIRE plane.iata IS UNIQUE;
+          //CREATE CONSTRAINT planeICAOConstraint FOR (plane:Plane) REQUIRE plane.icao IS UNIQUE;
+
+          // Load airport data
+          LOAD CSV FROM 'file:///airports.dat' AS row
+          MERGE (c:Country {name: row[3]})
+          CREATE (a:Airport {
+            id: toInteger(row[0]),
+            name: row[1],
+            city: row[2],
+            // country: row[3],
+            iata: row[4],
+            icao: row[5],
+            latitude: toFloat(row[6]),
+            longitude: toFloat(row[7])
+          })
+          CREATE (a)-[:IS_LOCATED_IN]->(c);
+
+          // Load airline data
+          LOAD CSV FROM 'file:///airlines.dat' AS row
+          MERGE (c:Country {name: row[6]})
+          CREATE (a:Airline {
+            id: toInteger(row[0]),
+            name: row[1],
+            alias: row[2],
+            iata: row[3],
+            icao: row[4],
+            callsign: row[5],
+            //country: row[6],
+            active: row[7]
+          })
+          CREATE (a)-[:IS_FROM]->(c);
+
+          // Load Plane data
+          LOAD CSV FROM 'file:///planes.dat' AS row
+          CREATE (a:Plane {
+            name: row[0],
+            iata: row[1],
+            icao: row[2]
+          });
+
+          // Load Route data
+          LOAD CSV FROM 'file:///routes.dat' AS row
+          MATCH (source:Airport {id: toInteger(row[3])}), (destination:Airport {id: toInteger(row[5])}), (airline:Airline {id: toInteger(row[1])})
+          WHERE source IS NOT NULL AND destination IS NOT NULL AND airline IS NOT NULL
+          CREATE (a:Route {
+            airline: row[0],
+            airline_id: row[1],
+            source_airport: row[2],
+            source_id:row[3],
+            destiation_airport: row[4],
+            destination_id: row[5],
+            code_share: row[6],
+            stops: toInteger(row[7]),
+            equipment: row[8]
+          })
+          CREATE (source)<-[:BEGIN_WITH]-(a)-[:END_WITH]->(destination)
+          CREATE (a)-[:OPERATED_BY]->(airline)
+          WITH a, split(a.equipment, ' ') AS equipment_list
+          UNWIND equipment_list AS equipment_code
+          MATCH (e: Plane {iata: equipment_code})
+          WHERE e is NOT NULL
+          CREATE (a)-[:EQUIPPED_WITH]->(e)
+
+          // Create INDEXES
+          //CREATE INDEX countryNameIndex FOR (c:Country) ON (c.name);
+        </pre>
+      </div>
+      <div class="col-sm-9">
+        <p>Use this to clean graph. (Reset before each start)</p>
+        <pre class="pre-scrollable code runnable">
+          MATCH (n)
+          DETACH DELETE n;
+
+          SHOW CONSTRAINTS;
+
+          DROP CONSTRAINT airportIdConstraint IF EXISTS;
+          DROP CONSTRAINT airlineIdConstraint IF EXISTS;
+          //DROP CONSTRAINT planeIATAConstraint IF EXISTS;
+          //DROP CONSTRAINT planeICAOConstraint IF EXISTS;
+
+        </pre>
+      </div>
+    </slide>
+
+    <!-- Slide Two -->
+    <slide class="row-fluid">
+      <div class="col-sm-3">
+        <h3>Graph Schema Inspection</h3>
+      </div>
+      <div class="col-sm-9">
+        <p1>Use the following command to visualize the graph schema:</p1>
+        <pre class="pre-scrollable code runnable">CALL db.schema.visualization();</pre>
+        <p2>In this graph schema,it has 5 types of nodes: Airport, Airline, Plane, Route and Country.</p2>
+        <p3>It has 6 types of relationship: BEGIN_WITH, END_WITH, EQUIPPED_WITH, IS_FROM, IS_LOCATED_WITH, and OPERATED_BY.</p3>
+      </div>
+    </slide>
+
+    <!-- NW1 -->
+    <slide class="row-fluid">
+      <div class="col-sm-3">
+        <h3>NW1</h3>
+        <p class="lead">Identify the top five aeroplanes that are most frequently utilized on international flight routes.</p>
+      </div>
+      <div class="col-sm-9">
+        <p>Workload Implementation</p>
+        <pre class="pre-scrollable code runnable">
+          MATCH (c1:Country)<-[:IS_LOCATED_IN]-(s:Airport)<-[:BEGIN_WITH]-(r:Route)-[:END_WITH]->(d:Airport)-[:IS_LOCATED_IN]->(c2:Country)
+          WHERE c1 <> c2
+          WITH r
+          MATCH (r:Route)-[:EQUIPPED_WITH]->(p:Plane)
+          WHERE p IS NOT NULL
+          WITH p.name AS aeroplane_name, COUNT(*) AS num_international_routes
+          RETURN aeroplane_name, num_international_routes
+          ORDER BY num_international_routes DESC
+          LIMIT 5;
+        </pre>
+      </div>
+    </slide>
+
+    <!-- NW2 -->
+    <slide class="row-fluid">
+      <div class="col-sm-3">
+        <h3>NW2</h3>
+        <p class="lead">Identify the top five airlines that operate flights in the highest number of distinct countries/territories.</p>
+      </div>
+      <div class="col-sm-9">
+        <p>Workload Implementation</p>
+        <pre class="pre-scrollable code runnable">
+          MATCH (airline:Airline)<-[:OPERATED_BY]-(r:Route)-[:BEGIN_WITH|END_WITH]->(a:Airport)-[:IS_LOCATED_IN]->(c:Country)
+          WITH airline.name AS airline_name, collect(DISTINCT c.name) AS country_list
+          WITH airline_name, size(country_list) AS num_countries
+          RETURN airline_name, num_countries
+          ORDER BY num_countries DESC
+          LIMIT 5;
+        </pre>
+      </div>
+    </slide>
+
+    <!-- NW3 -->
+    <slide class="row-fluid">
+      <div class="col-sm-3">
+        <h3>NW3</h3>
+        <p class="lead"> Identify the top five airports that serve a greater number of international flights
+          compared to domestic flights by calculating the difference between their interna
+         tional and domestic flight counts.</p>
+      </div>
+      <div class="col-sm-9">
+        <p>Workload Implementation</p>
+        <pre class="pre-scrollable code runnable">
+          MATCH (c1:Country)<-[:IS_LOCATED_IN]-(s:Airport)<-[:BEGIN_WITH]-(r:Route)-[:END_WITH]->(d:Airport)-[:IS_LOCATED_IN]->(c2:Country)
+          WITH c1, c2, r,
+            CASE WHEN c1 <> c2 THEN 'international' ELSE 'domestic' END AS flight
+          WITH r, flight
+          MATCH (r:Route)-[:BEGIN_WITH|END_WITH]->(a:Airport)
+          WITH a.name AS airport_name, collect(flight) AS flight_list
+          WITH airport_name,
+            size([flight IN flight_list WHERE flight = 'international']) AS international_count,
+            size([flight IN flight_list WHERE flight = 'domestic']) AS domestic_count
+          WITH airport_name, international_count, domestic_count, (international_count - domestic_count) AS difference
+          RETURN airport_name, international_count, domestic_count, difference
+          ORDER BY difference DESC
+          LIMIT 5;
+        </pre>
+      </div>
+    </slide>
+
+    <!-- NW4 -->
+    <slide class="row-fluid">
+      <div class="col-sm-3">
+        <h3>NW4</h3>
+        <p class="lead"> Identify all connecting flights from SYD to LHR with a stop and both flight legs operated by the same airline. </p>
+      </div>
+      <div class="col-sm-9">
+        <p>Workload Implementation</p>
+        <pre class="pre-scrollable code runnable">
+          MATCH (s:Airport {iata: 'SYD'})<-[:BEGIN_WITH]-(r1:Route)-[END_WITH]->(m:Airport), 
+            (m:Airport)<-[:BEGIN_WITH]-(r2:Route)-[:END_WITH]->(l:Airport {iata: 'LHR'})
+          WITH r1, r2, m, s, l
+          MATCH (r1:Route)-[:OPERATED_BY]->(a1:Airline), (r2:Route)-[:OPERATED_BY]->(a2:Airline)
+          WHERE a1 = a2
+          WITH a1.name AS airline_name, s.city AS source_city, m.city AS middle_city, l.city AS destination_city
+          RETURN airline_name, source_city, middle_city, destination_city
+          ORDER BY airline_name
+        </pre>
+      </div>
+    </slide>
+
+    <!-- NW5 -->
+    <slide class="row-fluid">
+      <div class="col-sm-3">
+        <h3>NW5</h3>
+        <p class="lead"> Identify the top five airports with the highest number of flight routes and, for each
+          of these airports, determine the top three airlines based on the number of non-code
+         share routes they operate through the airport.</p>
+      </div>
+      <div class="col-sm-9">
+        <p>Workload Implementation</p>
+        <pre class="pre-scrollable code runnable">
+          MATCH (r:Route)-[:BEGIN_WITH|END_WITH]->(a:Airport)
+          WITH a, COUNT(*) AS num_routes
+          ORDER BY num_routes DESC
+          LIMIT 5
+          WITH a, num_routes
+          MATCH (airline:Airline)<-[:OPERATED_BY]-(r1:Route)-[:BEGIN_WITH|END_WITH]->(a:Airport)
+          WHERE r1.code_share = '' OR r1.code_share IS NULL
+          WITH a.name AS airport_name, num_routes, airline.name AS airline_name, COUNT(r1) AS non_code_share_routes
+          ORDER BY num_routes DESC, non_code_share_routes DESC
+          WITH airport_name, num_routes, collect([airline_name, non_code_share_routes])[0..3] AS top_airlines
+          RETURN airport_name, num_routes, top_airlines; 
+        </pre>
+      </div>
+    </slide>
+
+    <!-- DW1 -->
+    <slide class="row-fluid">
+      <div class="col-sm-3">
+        <h3>Predicate Function (DW1)</h3>
+        <p class="lead">This query is used to find the airlines who operate at least one route with stops.</p>
+      </div>
+      <div class="col-sm-9">
+        <p>This query uses the <strong>ANY</strong> predicate function.</p>
+        <pre class="pre-scrollable code runnable">
+          MATCH (r:Route)-[:OPERATED_BY]->(a:Airline)
+          WITH a.name AS airline_name, collect(r) AS route_list
+          WHERE ANY(route in route_list WHERE route.stops > 0)
+          RETURN airline_name;
+        </pre>
+      </div>
+    </slide>
+
+    <!-- DW2 -->
+    <slide class="row-fluid">
+      <div class="col-sm-3">
+        <h3>Spatial and List Function (DW2)</h3>
+        <p class="lead">This query is used to find the direct distance between the two airports with highest number of serving flights/routes</p>
+      </div>
+      <div class="col-sm-9">
+        <p>This query uses <strong>point</strong> and <strong>point.distance</strong> spatial function, <strong>collect</strong> list function </p>
+        <pre class="pre-scrollable code runnable">
+          MATCH (r:Route)-[:BEGIN_WITH|END_WITH]->(a:Airport)
+          WITH a.name AS airport_name, a.latitude AS latitude, a.longitude AS longitude, COUNT(*) AS num_route
+          ORDER BY num_route DESC
+          LIMIT 2
+          //RETURN airport_name, latitude, longitude, num_route;
+          WITH collect({name: airport_name, latitude: latitude, longitude: longitude}) AS airports_loc
+          WITH point({latitude: airports_loc[0].latitude, longitude: airports_loc[0].longitude}) AS point1,
+          point({latitude: airports_loc[1].latitude, longitude: airports_loc[1].longitude}) AS point2,
+          airports_loc[0].name AS airport_1,
+          airports_loc[1].name AS airport_2
+          WITH airport_1, airport_2,  point.distance(point1, point2) AS distance_in_meters
+          RETURN airport_1, airport_2, distance_in_meters;
+        </pre>
+      </div>
+    </slide>
+
+    <!-- Slide Ten -->
+    <slide class="row-fluid">
+      <div class="col-sm-3">
+        <h3>Clear the Graph</h3>
+      </div>
+      <div class="col-sm-9">
+        <p>Use the following query to delete all nodes and relationships:</p>
+        <figure>
+          <pre class="pre-scrollable code runnable">
+            MATCH (n)
+            DETACH DELETE n;
+
+            SHOW CONSTRAINTS;
+
+            DROP CONSTRAINT airportIdConstraint IF EXISTS;
+            DROP CONSTRAINT airlineIdConstraint IF EXISTS;
+            //DROP CONSTRAINT planeIATAConstraint IF EXISTS;
+            //DROP CONSTRAINT planeICAOConstraint IF EXISTS;
+
+          </pre>
+        </figure>
+      </div>
+    </slide>
+  </carousel>
+</article>
