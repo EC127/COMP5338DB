@@ -1,0 +1,842 @@
+[
+  {
+    "_id": 1,
+    "city_id": 101,
+    "city": "Albuquerque NM",
+    "latitude": 35.08,
+    "longitude": -106.65,
+    "elevation": 1619
+  },
+  {
+    "_id": 2,
+    "city_id": 1,
+    "city": "Amsterdam",
+    "latitude": 52.37,
+    "longitude": 4.90,
+    "elevation": -2
+  },
+  {
+    "_id": 3,
+    "city_id": 2,
+    "city": "Athens",
+    "latitude": 37.98,
+    "longitude": 23.73,
+    "elevation": 20
+  },
+  {
+    "_id": 4,
+    "city_id": 3,
+    "city": "Atlanta GA",
+    "latitude": 33.75,
+    "longitude": -84.39,
+    "elevation": 225
+  },
+  {
+    "_id": 5,
+    "city_id": 4,
+    "city": "Auckland",
+    "latitude": -36.85,
+    "longitude": 174.76,
+    "elevation": 196
+  },
+  {
+    "_id": 6,
+    "city_id": 5,
+    "city": "Austin TX",
+    "latitude": 30.27,
+    "longitude": -97.74,
+    "elevation": 149
+  },
+  {
+    "_id": 7,
+    "city_id": 6,
+    "city": "Bangkok",
+    "latitude": 13.76,
+    "longitude": 100.50,
+    "elevation": 1.5
+  },
+  {
+    "_id": 8,
+    "city_id": 7,
+    "city": "Barcelona",
+    "latitude": 41.39,
+    "longitude": 2.17,
+    "elevation": 12
+  },
+  {
+    "_id": 9,
+    "city_id": 8,
+    "city": "Beijing",
+    "latitude": 39.90,
+    "longitude": 116.41,
+    "elevation": 44
+  },
+  {
+    "_id": 10,
+    "city_id": 9,
+    "city": "Berlin",
+    "latitude": 52.52,
+    "longitude": 13.41,
+    "elevation": 34
+  },
+  {
+    "_id": 11,
+    "city_id": 10,
+    "city": "Bologna",
+    "latitude": 44.49,
+    "longitude": 11.34,
+    "elevation": 54
+  },
+  {
+    "_id": 12,
+    "city_id": 11,
+    "city": "Boston MA",
+    "latitude": 42.36,
+    "longitude": -71.06,
+    "elevation": 43
+  },
+  {
+    "_id": 13,
+    "city_id": 12,
+    "city": "Boulder CO",
+    "latitude": 40.02,
+    "longitude": -105.27,
+    "elevation": 1621
+  },
+  {
+    "_id": 14,
+    "city_id": 13,
+    "city": "Brasilia",
+    "latitude": -15.80,
+    "longitude": -47.89,
+    "elevation": 1172
+  },
+  {
+    "_id": 15,
+    "city_id": 14,
+    "city": "Brisbane",
+    "latitude": -27.47,
+    "longitude": 153.02,
+    "elevation": null
+  },
+  {
+    "_id": 16,
+    "city_id": 15,
+    "city": "Brussels",
+    "latitude": 50.85,
+    "longitude": 4.36,
+    "elevation": 13
+  },
+  {
+    "_id": 17,
+    "city_id": 16,
+    "city": "Budapest",
+    "latitude": 47.50,
+    "longitude": 19.04,
+    "elevation": 102
+  },
+  {
+    "_id": 18,
+    "city_id": 17,
+    "city": "Buenos Aires",
+    "latitude": -34.60,
+    "longitude": -58.38,
+    "elevation": 25
+  },
+  {
+    "_id": 19,
+    "city_id": 18,
+    "city": "Calgary",
+    "latitude": 51.04,
+    "longitude": -114.07,
+    "elevation": 1045
+  },
+  {
+    "_id": 20,
+    "city_id": 19,
+    "city": "Canberra",
+    "latitude": -35.28,
+    "longitude": 149.13,
+    "elevation": 578
+  },
+  {
+    "_id": 21,
+    "city_id": 20,
+    "city": "Cape Town",
+    "latitude": -33.92,
+    "longitude": 18.42,
+    "elevation": null
+  },
+  {
+    "_id": 22,
+    "city_id": 21,
+    "city": "Chiang Mai",
+    "latitude": 18.79,
+    "longitude": 98.99,
+    "elevation": 310
+  },
+  {
+    "_id": 23,
+    "city_id": 22,
+    "city": "Chicago IL",
+    "latitude": 41.88,
+    "longitude": -87.63,
+    "elevation": 182
+  },
+  {
+    "_id": 24,
+    "city_id": 23,
+    "city": "Christchurch",
+    "latitude": -43.53,
+    "longitude": 172.63,
+    "elevation": 20
+  },
+  {
+    "_id": 25,
+    "city_id": 24,
+    "city": "Copenhagen",
+    "latitude": 55.68,
+    "longitude": 12.57,
+    "elevation": null
+  },
+  {
+    "_id": 26,
+    "city_id": 25,
+    "city": "Dallas TX",
+    "latitude": 32.78,
+    "longitude": -96.80,
+    "elevation": 131
+  },
+  {
+    "_id": 27,
+    "city_id": 26,
+    "city": "Denver CO",
+    "latitude": 39.74,
+    "longitude": -104.99,
+    "elevation": 1609
+  },
+  {
+    "_id": 28,
+    "city_id": 27,
+    "city": "Detroit MI",
+    "latitude": 42.33,
+    "longitude": -83.05,
+    "elevation": 200
+  },
+  {
+    "_id": 29,
+    "city_id": 28,
+    "city": "Dubai",
+    "latitude": 25.20,
+    "longitude": 55.27,
+    "elevation": null
+  },
+  {
+    "_id": 30,
+    "city_id": 29,
+    "city": "Dublin",
+    "latitude": 53.35,
+    "longitude": -6.26,
+    "elevation": 20
+  },
+  {
+    "_id": 31,
+    "city_id": 30,
+    "city": "Granada",
+    "latitude": 37.18,
+    "longitude": -3.60,
+    "elevation": 738
+  },
+  {
+    "_id": 32,
+    "city_id": 31,
+    "city": "Halifax",
+    "latitude": 44.65,
+    "longitude": -63.57,
+    "elevation": null
+  },
+  {
+    "_id": 33,
+    "city_id": 32,
+    "city": "Hanoi",
+    "latitude": 21.03,
+    "longitude": 105.83,
+    "elevation": null
+  },
+  {
+    "_id": 34,
+    "city_id": 33,
+    "city": "Ho Chi Minh City",
+    "latitude": 10.82,
+    "longitude": 106.63,
+    "elevation": 19
+  },
+  {
+    "_id": 35,
+    "city_id": 34,
+    "city": "Hong Kong",
+    "latitude": 22.32,
+    "longitude": 114.17,
+    "elevation": null
+  },
+  {
+    "_id": 36,
+    "city_id": 35,
+    "city": "Honolulu HI",
+    "latitude": 21.31,
+    "longitude": -157.86,
+    "elevation": 6
+  },
+  {
+    "_id": 37,
+    "city_id": 36,
+    "city": "Istanbul",
+    "latitude": 41.01,
+    "longitude": 28.98,
+    "elevation": 40
+  },
+  {
+    "_id": 38,
+    "city_id": 37,
+    "city": "Jakarta",
+    "latitude": -6.21,
+    "longitude": 106.85,
+    "elevation": 8
+  },
+  {
+    "_id": 39,
+    "city_id": 38,
+    "city": "Jerusalem",
+    "latitude": 31.77,
+    "longitude": 35.21,
+    "elevation": 754
+  },
+  {
+    "_id": 40,
+    "city_id": 39,
+    "city": "Johannesburg",
+    "latitude": -26.20,
+    "longitude": 28.05,
+    "elevation": 1753
+  },
+  {
+    "_id": 41,
+    "city_id": 40,
+    "city": "Kansas City MO",
+    "latitude": 39.10,
+    "longitude": -94.58,
+    "elevation": 277
+  },
+  {
+    "_id": 42,
+    "city_id": 112,
+    "city": "Kharkiv",
+    "latitude": 50.00,
+    "longitude": 36.31,
+    "elevation": 152
+  },
+  {
+    "_id": 43,
+    "city_id": 41,
+    "city": "Kolkata",
+    "latitude": 22.57,
+    "longitude": 88.36,
+    "elevation": 9
+  },
+  {
+    "_id": 44,
+    "city_id": 42,
+    "city": "Kuala Lumpur",
+    "latitude": 3.16,
+    "longitude": 101.71,
+    "elevation": 94
+  },
+  {
+    "_id": 45,
+    "city_id": 111,
+    "city": "Kyiv",
+    "latitude": 50.45,
+    "longitude": 30.52,
+    "elevation": 179
+  },
+  {
+    "_id": 46,
+    "city_id": 43,
+    "city": "Las Vegas NV",
+    "latitude": 36.17,
+    "longitude": -115.14,
+    "elevation": 610
+  },
+  {
+    "_id": 47,
+    "city_id": 44,
+    "city": "Lisbon",
+    "latitude": 38.72,
+    "longitude": -9.14,
+    "elevation": 2
+  },
+  {
+    "_id": 48,
+    "city_id": 45,
+    "city": "London",
+    "latitude": 51.51,
+    "longitude": -0.13,
+    "elevation": 11
+  },
+  {
+    "_id": 49,
+    "city_id": 46,
+    "city": "Los Angeles CA",
+    "latitude": 34.05,
+    "longitude": -118.24,
+    "elevation": 93
+  },
+  {
+    "_id": 50,
+    "city_id": 47,
+    "city": "Madrid",
+    "latitude": 40.42,
+    "longitude": -3.70,
+    "elevation": 657
+  },
+  {
+    "_id": 51,
+    "city_id": 48,
+    "city": "Marseille",
+    "latitude": 43.30,
+    "longitude": 5.37,
+    "elevation": 154
+  },
+  {
+    "_id": 52,
+    "city_id": 49,
+    "city": "Melbourne",
+    "latitude": -37.81,
+    "longitude": 144.96,
+    "elevation": 31
+  },
+  {
+    "_id": 53,
+    "city_id": 50,
+    "city": "Mexico City",
+    "latitude": 19.43,
+    "longitude": -99.13,
+    "elevation": 2240
+  },
+  {
+    "_id": 54,
+    "city_id": 51,
+    "city": "Miami FL",
+    "latitude": 25.76,
+    "longitude": -80.19,
+    "elevation": 2
+  },
+  {
+    "_id": 55,
+    "city_id": 105,
+    "city": "Minneapolis MN",
+    "latitude": 44.98,
+    "longitude": -93.27,
+    "elevation": 253
+  },
+  {
+    "_id": 56,
+    "city_id": 52,
+    "city": "Montreal",
+    "latitude": 45.50,
+    "longitude": -73.57,
+    "elevation": null
+  },
+  {
+    "_id": 57,
+    "city_id": 54,
+    "city": "Mumbai",
+    "latitude": 19.08,
+    "longitude": 72.88,
+    "elevation": 14
+  },
+  {
+    "_id": 58,
+    "city_id": 103,
+    "city": "Nashville TE",
+    "latitude": 36.16,
+    "longitude": -86.78,
+    "elevation": 182
+  },
+  {
+    "_id": 59,
+    "city_id": 55,
+    "city": "New Delhi",
+    "latitude": 28.61,
+    "longitude": 77.21,
+    "elevation": 216
+  },
+  {
+    "_id": 60,
+    "city_id": 56,
+    "city": "New Orleans LA",
+    "latitude": 29.95,
+    "longitude": -90.07,
+    "elevation": 2
+  },
+  {
+    "_id": 61,
+    "city_id": 57,
+    "city": "New York City NY",
+    "latitude": 40.71,
+    "longitude": -74.01,
+    "elevation": 10
+  },
+  {
+    "_id": 62,
+    "city_id": 58,
+    "city": "Oakland CA",
+    "latitude": 37.80,
+    "longitude": -122.27,
+    "elevation": 13
+  },
+  {
+    "_id": 63,
+    "city_id": 59,
+    "city": "Orlando FL",
+    "latitude": 28.54,
+    "longitude": -81.38,
+    "elevation": 25
+  },
+  {
+    "_id": 64,
+    "city_id": 60,
+    "city": "Osaka",
+    "latitude": 34.69,
+    "longitude": 135.50,
+    "elevation": null
+  },
+  {
+    "_id": 65,
+    "city_id": 61,
+    "city": "Oslo",
+    "latitude": 59.91,
+    "longitude": 10.75,
+    "elevation": 23
+  },
+  {
+    "_id": 66,
+    "city_id": 62,
+    "city": "Ottawa",
+    "latitude": 45.42,
+    "longitude": -75.70,
+    "elevation": 70
+  },
+  {
+    "_id": 67,
+    "city_id": 63,
+    "city": "Paris",
+    "latitude": 48.86,
+    "longitude": 2.35,
+    "elevation": 35
+  },
+  {
+    "_id": 68,
+    "city_id": 64,
+    "city": "Philadelphia PA",
+    "latitude": 39.95,
+    "longitude": -75.17,
+    "elevation": 12
+  },
+  {
+    "_id": 69,
+    "city_id": 65,
+    "city": "Phoenix AZ",
+    "latitude": 33.45,
+    "longitude": -112.07,
+    "elevation": 331
+  },
+  {
+    "_id": 70,
+    "city_id": 66,
+    "city": "Phuket",
+    "latitude": 7.88,
+    "longitude": 98.39,
+    "elevation": null
+  },
+  {
+    "_id": 71,
+    "city_id": 67,
+    "city": "Portland OR",
+    "latitude": 45.52,
+    "longitude": -122.68,
+    "elevation": 15
+  },
+  {
+    "_id": 72,
+    "city_id": 68,
+    "city": "Porto",
+    "latitude": 41.16,
+    "longitude": -8.63,
+    "elevation": 104
+  },
+  {
+    "_id": 73,
+    "city_id": 69,
+    "city": "Prague",
+    "latitude": 50.08,
+    "longitude": 14.44,
+    "elevation": null
+  },
+  {
+    "_id": 74,
+    "city_id": 70,
+    "city": "Quebec City",
+    "latitude": 46.81,
+    "longitude": -71.21,
+    "elevation": 98
+  },
+  {
+    "_id": 75,
+    "city_id": 71,
+    "city": "Reykjavik",
+    "latitude": 64.15,
+    "longitude": -21.94,
+    "elevation": null
+  },
+  {
+    "_id": 76,
+    "city_id": 72,
+    "city": "Rio de Janeiro",
+    "latitude": -22.91,
+    "longitude": -43.17,
+    "elevation": 2
+  },
+  {
+    "_id": 77,
+    "city_id": 73,
+    "city": "Rome",
+    "latitude": 41.90,
+    "longitude": 12.50,
+    "elevation": 21
+  },
+  {
+    "_id": 78,
+    "city_id": 75,
+    "city": "Salt Lake City UT",
+    "latitude": 40.76,
+    "longitude": -111.89,
+    "elevation": 1288
+  },
+  {
+    "_id": 79,
+    "city_id": 76,
+    "city": "San Francisco CA",
+    "latitude": 37.77,
+    "longitude": -122.42,
+    "elevation": 16
+  },
+  {
+    "_id": 80,
+    "city_id": 77,
+    "city": "Santiago",
+    "latitude": -33.45,
+    "longitude": -70.67,
+    "elevation": 570
+  },
+  {
+    "_id": 81,
+    "city_id": 78,
+    "city": "Sao Paulo",
+    "latitude": -23.56,
+    "longitude": -46.64,
+    "elevation": 760
+  },
+  {
+    "_id": 82,
+    "city_id": 79,
+    "city": "Seattle WA",
+    "latitude": 47.61,
+    "longitude": -122.33,
+    "elevation": 53
+  },
+  {
+    "_id": 83,
+    "city_id": 80,
+    "city": "Seoul",
+    "latitude": 37.57,
+    "longitude": 126.98,
+    "elevation": 38
+  },
+  {
+    "_id": 84,
+    "city_id": 81,
+    "city": "Sevilla",
+    "latitude": 37.39,
+    "longitude": -5.98,
+    "elevation": 7
+  },
+  {
+    "_id": 85,
+    "city_id": 82,
+    "city": "Shanghai",
+    "latitude": 31.23,
+    "longitude": 121.47,
+    "elevation": 4
+  },
+  {
+    "_id": 86,
+    "city_id": 83,
+    "city": "Singapore",
+    "latitude": 1.35,
+    "longitude": 103.82,
+    "elevation": null
+  },
+  {
+    "_id": 87,
+    "city_id": 84,
+    "city": "Sofia",
+    "latitude": 42.70,
+    "longitude": 23.32,
+    "elevation": 553
+  },
+  {
+    "_id": 88,
+    "city_id": 104,
+    "city": "St. Louis MO",
+    "latitude": 38.63,
+    "longitude": -90.20,
+    "elevation": 142
+  },
+  {
+    "_id": 89,
+    "city_id": 85,
+    "city": "Stockholm",
+    "latitude": 59.33,
+    "longitude": 18.07,
+    "elevation": 28
+  },
+  {
+    "_id": 90,
+    "city_id": 86,
+    "city": "Sydney",
+    "latitude": -33.87,
+    "longitude": 151.21,
+    "elevation": 3
+  },
+  {
+    "_id": 91,
+    "city_id": 87,
+    "city": "Taghazout",
+    "latitude": 30.55,
+    "longitude": -9.71,
+    "elevation": null
+  },
+  {
+    "_id": 92,
+    "city_id": 88,
+    "city": "Tel Aviv",
+    "latitude": 32.09,
+    "longitude": 34.78,
+    "elevation": 5
+  },
+  {
+    "_id": 93,
+    "city_id": 89,
+    "city": "Tokyo",
+    "latitude": 35.68,
+    "longitude": 139.65,
+    "elevation": 40
+  },
+  {
+    "_id": 94,
+    "city_id": 90,
+    "city": "Toronto",
+    "latitude": 43.65,
+    "longitude": -79.38,
+    "elevation": 76
+  },
+  {
+    "_id": 95,
+    "city_id": 91,
+    "city": "Tucson AZ",
+    "latitude": 32.25,
+    "longitude": -110.97,
+    "elevation": 728
+  },
+  {
+    "_id": 96,
+    "city_id": 92,
+    "city": "Ubud Bali",
+    "latitude": -8.51,
+    "longitude": 115.26,
+    "elevation": null
+  },
+  {
+    "_id": 97,
+    "city_id": 93,
+    "city": "Valencia",
+    "latitude": 39.47,
+    "longitude": -0.38,
+    "elevation": 15
+  },
+  {
+    "_id": 98,
+    "city_id": 94,
+    "city": "Vancouver",
+    "latitude": 49.28,
+    "longitude": -123.12,
+    "elevation": null
+  },
+  {
+    "_id": 99,
+    "city_id": 95,
+    "city": "Venice",
+    "latitude": 45.44,
+    "longitude": 12.32,
+    "elevation": 1
+  },
+  {
+    "_id": 100,
+    "city_id": 102,
+    "city": "Vermont IL",
+    "latitude": 40.29,
+    "longitude": -90.43,
+    "elevation": 212
+  },
+  {
+    "_id": 101,
+    "city_id": 96,
+    "city": "Vienna",
+    "latitude": 48.21,
+    "longitude": 16.37,
+    "elevation": 190
+  },
+  {
+    "_id": 102,
+    "city_id": 97,
+    "city": "Warsaw",
+    "latitude": 52.23,
+    "longitude": 21.01,
+    "elevation": 100
+  },
+  {
+    "_id": 103,
+    "city_id": 98,
+    "city": "Washington DC",
+    "latitude": 38.91,
+    "longitude": -77.04,
+    "elevation": 125
+  },
+  {
+    "_id": 104,
+    "city_id": 99,
+    "city": "Wellington",
+    "latitude": -41.29,
+    "longitude": 174.78,
+    "elevation": 10
+  },
+  {
+    "_id": 105,
+    "city_id": 100,
+    "city": "Zurich",
+    "latitude": 47.38,
+    "longitude": 8.54,
+    "elevation": 408
+  }
+]

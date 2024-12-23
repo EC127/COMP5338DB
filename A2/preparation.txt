@@ -1,0 +1,20 @@
+mongoimport --db emissions --collection climates --file climates.json --jsonArray
+
+mongoimport --db emissions --collection coords --file coords.json --jsonArray
+
+mongoimport --db emissions --collection co2 --file processed_co2.json --jsonArray
+
+Index:
+
+db.co2.createIndex({ "data.year": 1 })
+
+db.coords.createIndex({ city: 1 })
+db.climates.createIndex({ city: 1 })
+
+db.climates.createIndex({ region: 1 })
+
+db.analytics1.createIndex({ year: 1 })
+
+db.coords.createIndex({ elevation: 1 })
+
+
